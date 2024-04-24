@@ -1,0 +1,31 @@
+services:
+  airflow-db:
+    container_name: airflow-db
+    image: "postgres:16.1-alpine3.19"
+    environment:
+      POSTGRES_USER: ${AIRFLOW_DB_ADMIN_USER}
+      POSTGRES_PASSWORD: ${AIRFLOW_DB_ADMIN_PASSWORD}
+      POSTGRES_DB: ${AIRFLOW_DB_DATABASE}
+    ports:
+      - "${AIRFLOW_DB_PORT}:5432"
+    volumes:
+      - db-airflow-data:/var/lib/postgresql/data
+
+  airflow:
+    container_name: airflow
+    build:
+      dockerfile: airflow/Dockerfile
+      context: .
+    command: standalone
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow:/opt/airflow
+
+networks:
+  default:
+    name: airflow-network
+
+volumes:
+  db-airflow-data:
+    name: db-airflow-data

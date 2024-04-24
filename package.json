@@ -1,0 +1,18 @@
+{
+  "name": "analytic-pipeline",
+  "version": "1.0.0",
+  "description": "`wsl -u serveradmin -d Ubuntu-22.04`",
+  "main": "index.js",
+  "scripts": {
+    "setup": "setup",
+    "setup:postgres": "p",
+    "env:file:copy": "sh scripts/copy-env.sh",
+  },
+  "keywords": [
+    "ai",
+    "analytics",
+    "explainability"
+  ],
+  "author": "javierrojas6@gmail.com",
+  "license": "ISC"
+}
