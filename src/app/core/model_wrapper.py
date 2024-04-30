@@ -1,4 +1,3 @@
-
 import enum
 from dataclasses import dataclass
 import os
@@ -30,8 +29,45 @@ class ModelWrapper():
     model_hyperparameters: dict = None
     vectorizer: Any = None
     vector_type: VectorizeTechnique = None
+    
+    def transform(self, x):
+        """
+        The function `transform` checks if a vectorizer is instantiated and applies different
+        transformation techniques based on the vector type.
+        
+        :param x: It looks like the code you provided is a method named `transform` within a class, and
+        it takes a parameter `x`. The method checks if a vectorizer is instantiated for the class
+        instance (`self`) and then transforms the input `x` based on the vectorization technique
+        specified by `self
+        :return: The `transform` method returns the transformed input `x` based on the vectorization
+        technique specified in `self.vector_type`. If the vector type is `N_GRAM`, it transforms the
+        input using the vectorizer and returns it as a NumPy array. If the vector type is `SEQUENCE`, it
+        directly returns the result of the vectorizer applied to the input. If the vector type is
+        """
+        if self.vectorizer == None:
+            raise Exception(f'vectorizer not instantiated for {self.name}')
+
+        if self.vector_type == VectorizeTechnique.N_GRAM:
+            transformed = self.vectorizer.transform(x)
+            return np.array(scipy.sparse.csr_matrix.toarray(transformed))
+
+        elif self.vector_type == VectorizeTechnique.SEQUENCE:
+            return self.vectorizer(x)
+
+        return None
 
     def predict(self, x):
+        """
+        This Python function predicts outcomes using a specified vectorization technique and a machine
+        learning model.
+        
+        :param x: It looks like the `predict` method in the code snippet is used to make predictions
+        using a machine learning model. The input parameter `x` is the data that you want to make
+        predictions on
+        :return: The predict method returns the predictions made by the model on the input data x after
+        transforming it using the appropriate vectorization technique specified in the code. The
+        predictions are flattened before being returned.
+        """
         if self.model == None:
             return None
 

@@ -1,1 +1,1 @@
-from . import * 
+from .model_wrapper import *
