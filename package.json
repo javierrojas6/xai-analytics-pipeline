@@ -1,12 +1,11 @@
 {
   "name": "analytic-pipeline",
   "version": "1.0.0",
-  "description": "`wsl -u serveradmin -d Ubuntu-22.04`",
-  "main": "index.js",
+  "description": "`XAI analytic pipeline",
   "scripts": {
-    "setup": "setup",
-    "setup:postgres": "p",
     "env:file:copy": "sh scripts/copy-env.sh",
+    "setup:db": "sh scripts/postgres-setup.sh",
+    "setup:dataset": "sh scripts/dataset-setup.sh"
   },
   "keywords": [
     "ai",

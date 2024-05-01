@@ -19,7 +19,7 @@ from app.benchmark_load_data import load_imdb_sentiment_analysis_dataset
 from app.core.model_wrapper import ModelWrapper
 # %%
 models_folder = "../models"
-performance_report_url = "../performance_report.csv"
+performance_report_url = "../assets/performance_report.csv"
 # %%
 df_performance_report = pd.read_csv(performance_report_url)
 # %%
@@ -43,7 +43,6 @@ with tqdm(total=df_performance_report.shape[0], ncols=100, desc='instancing mode
         models += [model]
 
         pbar.update(1)
-
 # %%
 dataset = load_imdb_sentiment_analysis_dataset('../dataset')
 # %%
@@ -90,6 +89,7 @@ print('STD:', np.std(predictions1))
 print('VAR:', np.var(predictions1))
 print('MEDIAN:', np.median(predictions1))
 print('COV:', np.cov(predictions1))
+print('Pred score: ', predictions1[prediction_index])
 # %%
 y_predicted = predictions1 > 0.5
 # %%
@@ -102,8 +102,6 @@ explainer = shap.Explainer(models[model_index].predict, shap.maskers.Text(r"\W")
 shap_values = explainer(x_train[prediction_index - 1 : prediction_index])
 # %%
 shap_values.base_values
-# %%
-print('score: ', predictions1[prediction_index])
 # %%
 shap.initjs()
 # %%

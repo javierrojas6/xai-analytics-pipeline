@@ -166,6 +166,7 @@ data/
 dataset/
 model/
 logs/
+packages/
 trained
 airflow.db
 airflow-webserver.pid
