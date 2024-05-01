@@ -163,6 +163,7 @@ cython_debug/
 .vscode/
 backups/
 data/
+dataset/
 model/
 trained
 .env
