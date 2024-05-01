@@ -165,10 +165,8 @@ backups/
 data/
 dataset/
 model/
+logs/
 trained
-.env
 airflow.db
 airflow-webserver.pid
 standalone_admin_password.txt
-
-.env
